@@ -1,13 +1,26 @@
+<!-- store in memory but will be hidden. sideNote: render content based on condition. -->
+<!-- ng structural directive/ngIf  -- short hand -->
+ <p *ngIf="blueClass">Button is blue.</p>
+
+<!-- using the ngClass directive to toggle a class on the element -->
+<button (click)="blueClass = !blueClass"
+[ngClass]="{ blue: blueClass }"
+[ngStyle]="{ 'font-size.px': fontSize }">Change</button>
+
+<hr>
+
 <!-- event binding () -->
 <input (keyup)="changeImage($event)"[value]="imgUrl">
 
 <!-- property binding []-->
 <!-- <img [src]="imgUrl"> -->
 
-<!-- Content projection -->
-<app-post [img]="imgUrl" (imgSelected)="logImg($event)">
-    <p>Some Caption</p>
+<!-- Content projection :Post Component -->
+<!-- ngfor directive  -->
+<app-post *ngFor="let image of images; let i = index" [img]="image" (imgSelected)="logImg($event)">
+    <p>{{i}}Some Caption</p>
 </app-post>
+
 
 <!-- pipe here -->
 <p>Hello {{ name | titlecase }}!</p>
