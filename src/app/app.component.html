@@ -4,11 +4,20 @@
 <!-- property binding []-->
 <!-- <img [src]="imgUrl"> -->
 
+<!-- Content projection -->
 <app-post [img]="imgUrl" (imgSelected)="logImg($event)">
     <p>Some Caption</p>
 </app-post>
 
-
-<p>Hello {{ name.toUpperCase() }}!</p>
+<!-- pipe here -->
+<p>Hello {{ name | titlecase }}!</p>
 <p>Hello {{ getName() }}!</p>
 <p>{{ 15 + 13 }}</p>
+<!-- formatting a pipe date additional formats avail. See Angular docs -->
+<p>{{ currentDate | date: 'MMMM d' }} </p>
+<!-- currency pipe will format not convert - default is en US-->
+<p>{{ cost | currency: 'JPY' }}</p>
+<!-- decimal pipe the first 0 sets the min the second sets the max, stripping away the decimal -->
+<p>{{ temperature | number: '1.0-0' }}</p>
+<!-- JSON pipe good for debugging-->
+<pre>{{ pizza | json }}</pre>
